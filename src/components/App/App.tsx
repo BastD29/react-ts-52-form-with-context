@@ -18,6 +18,8 @@ import { orderKey, renderOrder } from "../../utils/order";
 import List from "../List/List";
 import { Summary } from "../Summary/Summary";
 import { TabBar } from "../TabBar/TabBar";
+import Button from "../Button/Button";
+import GenericButton from "../GenericButton/GenericButton";
 
 export default function App() {
   const [selectedSocial, setSelectedSocial] = useState<MySocial>(socials[0]);
@@ -25,6 +27,11 @@ export default function App() {
   function selectHandler(item: MySocial) {
     setSelectedSocial(item);
   }
+
+  const handleClick = () => alert("Button clicked!");
+
+  const handleStringClick = (value: string) => alert(`String: ${value}`);
+  const handleNumberClick = (value: number) => alert(`Number: ${value}`);
 
   return (
     <>
@@ -53,6 +60,13 @@ export default function App() {
           <a href={selectedSocial.link}>Visit {selectedSocial.name}</a>
         </div>
       </div>
+
+      {/* Button and GenericButton comparison */}
+      <Button label="Click me" onClick={handleClick} />
+      <Button label="Heyyyyy" onClick={handleClick} />
+
+      <GenericButton<string> value="Test string" onClick={handleStringClick} />
+      <GenericButton<number> value={42} onClick={handleNumberClick} />
     </>
   );
 }
