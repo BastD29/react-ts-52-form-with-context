@@ -1,4 +1,4 @@
-import Signup from "../Signup/Signup";
+import Signup from "../Signup/Signup2";
 import Login from "../Login/Login";
 import { FC } from "react";
 

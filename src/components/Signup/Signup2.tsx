@@ -1,7 +1,6 @@
 import { FC } from "react";
-// import Form from "../Form/Form";
 import Form from "../Form/Form2";
-import FormInput from "../FormInput/FormInput";
+import FormInput from "../FormInput/FormInput2";
 
 type SignupFormValues = {
   firstName: string;
