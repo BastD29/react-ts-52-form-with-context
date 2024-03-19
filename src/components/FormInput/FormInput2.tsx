@@ -1,7 +1,7 @@
-import { FC, useContext } from "react";
-import { FormContext } from "../../context/FormContext/FormContext";
+import { FC } from "react";
 
-// import { FormContext } from "../Form/Form2";
+import { useFormContext } from "../../hooks/useFormContext";
+import { FormValues } from "../../models/Form";
 
 interface FormInputProps {
   label: string;
@@ -10,7 +10,7 @@ interface FormInputProps {
 }
 
 const FormInput: FC<FormInputProps> = ({ label, type = "text", name }) => {
-  const { form, handleFormChange } = useContext(FormContext);
+  const { form, handleFormChange } = useFormContext<FormValues>();
 
   return (
     <div className="FormInput">

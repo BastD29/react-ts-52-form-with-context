@@ -1,18 +1,19 @@
-import { Context, useContext } from "react";
+import { /* Context, */ useContext } from "react";
 import {
   FormContext,
   FormContextType,
-  FormValuesType,
 } from "../context/FormContext/FormContext";
 
-export function useFormContext<FormValues extends FormValuesType>() {
-  const context = useContext(
-    FormContext as Context<FormContextType<FormValues> | null>
-  );
+export function useFormContext<FormValues>() {
+  const context = useContext(FormContext);
 
-  if (!context) {
+  // const context = useContext(
+  //   FormContext as Context<FormContextType<FormValues> | undefined>
+  // );
+
+  if (context === undefined) {
     throw new Error("useFormContext must be used within a FormProvider");
   }
 
-  return context;
+  return context as FormContextType<FormValues>;
 }
