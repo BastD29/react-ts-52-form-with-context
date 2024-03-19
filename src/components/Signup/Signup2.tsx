@@ -1,7 +1,6 @@
 import { FC } from "react";
 import Form from "../Form/Form2";
 import FormInput from "../FormInput/FormInput2";
-// import { useFormContext } from "../../hooks/useFormContext";
 
 type SignupFormValues = {
   firstName: string;
@@ -24,8 +23,6 @@ const Signup: FC<SignupProps> = ({}) => {
   const handleSubmit = (formData: SignupFormValues) => {
     console.log("submitted signup formData:", formData);
   };
-
-  // const { handleSubmit } = useFormContext();
 
   return (
     <>

@@ -1,5 +1,5 @@
-import { useState, ChangeEvent, ReactNode, PropsWithChildren } from "react";
-import { FormContext } from "../../context/FormContext/FormContext";
+import { ReactNode } from "react";
+import { FormProvider } from "../../context/FormContext/FormProvider";
 
 interface FormProps<FormValues> {
   children: ReactNode;
@@ -7,31 +7,16 @@ interface FormProps<FormValues> {
   initialValues: FormValues;
 }
 
-const Form = <FormValues extends Record<string, any>>({
+function Form<FormValues extends Record<string, any>>({
   children,
-  submit = () => {},
+  submit,
   initialValues,
-}: PropsWithChildren<FormProps<FormValues>>) => {
-  const [form, setForm] = useState<FormValues>(initialValues);
-
-  const handleFormChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setForm((prevForm) => ({
-      ...prevForm,
-      [name]: value,
-    }));
-  };
-
+}: FormProps<FormValues>) {
   return (
-    <form className="Form">
-      <FormContext.Provider value={{ form, handleFormChange }}>
-        {children}
-      </FormContext.Provider>
-      <button type="button" onClick={() => submit(form)}>
-        Submit
-      </button>
-    </form>
+    <FormProvider initialValues={initialValues} submit={submit}>
+      {children}
+    </FormProvider>
   );
-};
+}
 
 export default Form;
